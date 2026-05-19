@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
       // Try to decode basic JWT payload for display name / email
       try {
         const payload = JSON.parse(atob(newToken.split('.')[1]));
-        const decoded = { id: payload.id, displayName: payload.displayName || payload.email, email: payload.email };
+        const decoded = { id: payload.id, username: payload.username, displayName: payload.displayName || payload.username };
         setUser(decoded);
         localStorage.setItem('nexus_user', JSON.stringify(decoded));
       } catch {}

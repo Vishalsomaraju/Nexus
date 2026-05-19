@@ -1,95 +1,49 @@
-# NEXUS — Real-Time Communication Platform
+# 🌌 NEXUS
 
-A full-stack video conferencing and collaboration app built with WebRTC, Socket.io, React, and Node.js.
+> **Communication built for teams that move fast.**
+> A highly secure, deeply integrated workspace for real-time collaboration.
 
-## Features
+NEXUS is a premium video communication platform designed for professionals who need fast, secure, and reliable interactions. We've built an environment where your privacy is paramount, and your workflow remains entirely uninterrupted.
 
-- 🎥 **Multi-user video calling** — WebRTC mesh topology (up to 6 participants)
-- 🖥️ **Screen sharing** — Switch between camera and screen mid-call
-- 💬 **Encrypted chat** — End-to-end via WebRTC Data Channels
-- 📁 **File sharing** — Direct P2P file transfer (no server relay)
-- 🎨 **Collaborative whiteboard** — Real-time synchronized drawing canvas
-- 🔐 **JWT authentication** — Secure login/signup with bcrypt-hashed passwords
+---
 
-## Tech Stack
+## ⚡ What is NEXUS?
 
-| Layer           | Technology                             |
-| --------------- | -------------------------------------- |
-| Frontend        | React 18 + Vite                        |
-| Styling         | Vanilla CSS (glassmorphism, dark mode) |
-| Real-time Media | WebRTC (native browser API)            |
-| Signaling       | Socket.io                              |
-| Backend         | Node.js + Express                      |
-| Database        | SQLite via Prisma ORM                  |
-| Auth            | JWT + bcrypt                           |
+NEXUS bridges the gap between quick chat and formal video conferencing. It provides an instantly accessible "Lobby" where you can manage your network, and instantly spawn secure, end-to-end encrypted rooms to collaborate with your team at the speed of thought.
 
-## Project Structure
+There are no clunky downloads or forced waiting rooms. Just pure, uninterrupted communication.
 
-```
-realTimeCommunication/
-├── backend/
-│   ├── prisma/schema.prisma
-│   ├── src/server.js
-│   ├── .env.example
-│   └── package.json
-└── frontend/
-    ├── src/
-    │   ├── components/     # VideoTile, Whiteboard, Chat, FileShare, ControlBar
-    │   ├── context/        # AuthContext
-    │   ├── hooks/          # useWebRTC
-    │   ├── pages/          # Landing, Auth, Lobby, Room
-    │   └── styles/         # global.css
-    ├── index.html
-    └── package.json
-```
+---
 
-## Quick Start
+## ✨ Core Features
 
-### 1. Backend Setup
+### 🛡️ Ironclad Security
+Every meeting generated on NEXUS is highly secure. Our "Protocol Online" infrastructure ensures that once a connection is established, your video, audio, and data streams remain entirely private.
 
-```bash
-cd backend
-npm install
-cp .env.example .env          # Edit JWT_SECRET
-npx prisma migrate dev --name init
-npx prisma generate
-npm run dev
-# Server starts on http://localhost:3001
-```
+### 🚀 Instant Lobby & Workspaces
+Your personal Lobby serves as your command center. From here, you can seamlessly:
+- See your **Upcoming Meetings** at a glance.
+- Spawn a **Secure Meeting Room** with a single click.
+- Join an existing channel instantly via a secure **Room ID**.
 
-### 2. Frontend Setup
+### 📞 Fluid Video & Audio
+Experience latency-free communication. Whether you are running a 1-on-1 sync or a broader team huddle, the video flows smoothly while neural noise cancellation keeps your audio crisp.
 
-```bash
-cd frontend
-npm install
-npm run dev
-# App starts on http://localhost:5173
-```
+### 🌐 Secure Contacts Network
+Manage your most frequent collaborators in your secure network. The Contacts directory allows you to quickly locate peers and establish encrypted lines of communication immediately.
 
-### 3. Test Multi-User Video
+---
 
-1. Open two different browser profiles (or one normal + one incognito)
-2. Register two separate accounts
-3. In the Lobby, both users create/join the same Room ID
-4. Grant camera/microphone permissions
-5. Verify bidirectional video ✅, chat ✅, whiteboard ✅, file sharing ✅
+## 🗺️ How It Works
 
-## Architecture: WebRTC Signaling Flow
+Using NEXUS is designed to be frictionless:
 
-```
-User A joins room → Server notifies existing peers
-Existing peer B → creates RTCPeerConnection → sends Offer via Socket.io
-User A → receives Offer → creates Answer → sends back via Socket.io
-Both → exchange ICE candidates via Socket.io
-Connection established → P2P media streams directly between browsers
-```
+1. **Sign In / Authenticate:** Access your command center using your secure credentials.
+2. **Enter the Lobby:** You'll land in your workspace. Here, you can review system logs, check scheduled meetings, and view your contacts.
+3. **Initialize a Channel:** Click "New Meeting" to instantly generate a secure, unique Room ID. 
+4. **Share & Connect:** Send the Room ID to your peer. They can drop it into their Lobby's "Join" field, and you are immediately connected in a secure, peer-to-peer session.
+5. **Collaborate:** Utilize high-definition video, crystal-clear audio, and lightning-fast data channels.
 
-Data channels (chat, whiteboard, files) are layered on top of the P2P connection — fully end-to-end encrypted, zero server relay.
+---
 
-## Security Notes
-
-- Passwords hashed with bcrypt (12 rounds)
-- JWTs expire in 7 days
-- Socket.io connections require a valid JWT
-- WebRTC Data Channels are encrypted by DTLS (spec-mandated)
-- STUN servers used for NAT traversal (no TURN = no relay overhead)
+*NEXUS — Communicate at the speed of thought.*

@@ -25,7 +25,7 @@ app.use(express.json());
 // Auth routes
 app.post('/api/signup', async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, displayName } = req.body;
     
     // Check if user exists
     const existingUser = await prisma.user.findUnique({ where: { username } });
@@ -35,11 +35,11 @@ app.post('/api/signup', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
     const user = await prisma.user.create({
-      data: { username, password: hashedPassword }
+      data: { username, password: hashedPassword, displayName }
     });
 
-    const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '7d' });
-    res.json({ token, username: user.username });
+    const token = jwt.sign({ id: user.id, username: user.username, displayName: user.displayName }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    res.json({ token, username: user.username, displayName: user.displayName });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
@@ -60,8 +60,8 @@ app.post('/api/login', async (req, res) => {
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '7d' });
-    res.json({ token, username: user.username });
+    const token = jwt.sign({ id: user.id, username: user.username, displayName: user.displayName }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    res.json({ token, username: user.username, displayName: user.displayName });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
@@ -85,10 +85,29 @@ const authenticateToken = (req, res, next) => {
 app.get('/api/users', authenticateToken, async (req, res) => {
   try {
     const users = await prisma.user.findMany({
-      select: { id: true, username: true, createdAt: true }
+      select: { id: true, username: true, displayName: true, createdAt: true }
     });
     // Filter out the current user if desired, but frontend can do that too
     res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Update display name
+app.put('/api/user/display-name', authenticateToken, async (req, res) => {
+  try {
+    const { displayName } = req.body;
+    if (!displayName) return res.status(400).json({ error: 'Display name required' });
+
+    const updatedUser = await prisma.user.update({
+      where: { id: req.user.id },
+      data: { displayName }
+    });
+
+    const token = jwt.sign({ id: updatedUser.id, username: updatedUser.username, displayName: updatedUser.displayName }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    res.json({ token, username: updatedUser.username, displayName: updatedUser.displayName });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });

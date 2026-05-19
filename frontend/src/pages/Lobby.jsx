@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import './Lobby.css';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
 const MEETINGS = [
   { id: 'qns-224', title: 'Quantum Neural Sync',   time: '14:00 UTC', status: 'ready' },
   { id: 'gpr-448', title: 'Global Protocol Review', time: '16:30 UTC', status: 'active' },
@@ -189,7 +191,7 @@ function ContactsView({ token }) {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    fetch('http://localhost:3001/api/users', {
+    fetch(`${API_URL}/api/users`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -251,7 +253,32 @@ function ContactsView({ token }) {
   );
 }
 
-function SettingsView({ user }) {
+function SettingsView({ user, token, setToken }) {
+  const [displayName, setDisplayName] = useState(user?.displayName || user?.username || '');
+  const [saving, setSaving] = useState(false);
+
+  const handleSaveName = async () => {
+    setSaving(true);
+    try {
+      const res = await fetch(`${API_URL}/api/user/display-name`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ displayName })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setToken(data.token); // update context instantly
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSaving(false);
+    }
+  };
+
   return (
     <main className="lobby-main view-settings">
       <header className="lobby-header">
@@ -267,8 +294,27 @@ function SettingsView({ user }) {
           Profile
         </h2>
         <div className="settings-panel">
+          <div className="setting-item" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem' }}>
+            <span className="setting-label">Display Name</span>
+            <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
+              <input 
+                type="text" 
+                className="input-field" 
+                value={displayName} 
+                onChange={(e) => setDisplayName(e.target.value)} 
+                style={{ flex: 1 }}
+              />
+              <button 
+                className="btn btn-primary" 
+                onClick={handleSaveName} 
+                disabled={saving || !displayName.trim() || displayName === (user?.displayName || user?.username)}
+              >
+                {saving ? 'Saving...' : 'Save'}
+              </button>
+            </div>
+          </div>
           <div className="setting-item">
-            <span className="setting-label">Username</span>
+            <span className="setting-label">Username (Email)</span>
             <span className="setting-value">{user?.username}</span>
           </div>
           <div className="setting-item">
@@ -305,7 +351,7 @@ function SettingsView({ user }) {
 // --- Main Lobby Component ---
 
 export default function Lobby() {
-  const { user, token, logout } = useContext(AuthContext);
+  const { user, token, setToken, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [roomId, setRoomId] = useState('');
   const [activeNav, setActiveNav] = useState('Home');
@@ -378,7 +424,7 @@ export default function Lobby() {
         <ContactsView token={token} />
       )}
       {activeNav === 'Settings' && (
-        <SettingsView user={user} />
+        <SettingsView user={user} token={token} setToken={setToken} />
       )}
     </div>
   );

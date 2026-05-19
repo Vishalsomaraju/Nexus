@@ -26,7 +26,7 @@ export default function Auth() {
     const endpoint = mode === 'login' ? '/api/login' : '/api/signup';
     const body = mode === 'login'
       ? { username: form.email, password: form.password }
-      : { username: form.email, password: form.password };
+      : { username: form.email, password: form.password, displayName: form.displayName };
     try {
       const res = await fetch(`${API_URL}${endpoint}`, {
         method: 'POST',
