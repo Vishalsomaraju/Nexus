@@ -271,9 +271,14 @@ function SettingsView({ user, token, setToken }) {
       if (res.ok) {
         const data = await res.json();
         setToken(data.token); // update context instantly
+        alert('Profile updated successfully!');
+      } else {
+        const errData = await res.json().catch(() => ({}));
+        alert(`Failed to update: ${errData.error || 'Server error or endpoint not found'}`);
       }
     } catch (err) {
       console.error(err);
+      alert('Network error: Could not reach the server. Make sure VITE_API_URL is configured correctly in Vercel.');
     } finally {
       setSaving(false);
     }
