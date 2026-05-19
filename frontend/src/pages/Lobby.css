@@ -1,0 +1,599 @@
+/* Lobby.css — Obsidian Monochrome */
+
+.lobby-page {
+  display: flex;
+  height: 100vh;
+  background: var(--s1);
+  overflow: hidden;
+}
+
+/* ─── SIDEBAR ─── */
+.lobby-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--s0);
+  border-right: 1px solid var(--s5);
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid var(--s5);
+  flex-shrink: 0;
+}
+.sidebar-brand-mark {
+  width: 26px;
+  height: 26px;
+  background: var(--accent);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sidebar-brand-mark .material-symbols-outlined {
+  font-size: 14px;
+  color: #fff;
+}
+.sidebar-brand-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--t1);
+}
+
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.75rem 0.625rem;
+}
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--r-md);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--t3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+  width: 100%;
+}
+.sidebar-nav-item:hover {
+  background: var(--s3);
+  color: var(--t2);
+}
+.sidebar-nav-item.active {
+  background: var(--accent-pale);
+  color: var(--accent);
+}
+.sidebar-nav-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 1rem;
+  border-top: 1px solid var(--s5);
+  flex-shrink: 0;
+}
+.sidebar-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--s4);
+  border: 1px solid var(--s6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sidebar-avatar .material-symbols-outlined {
+  font-size: 16px;
+  color: var(--t3);
+}
+.sidebar-user-info {
+  flex: 1;
+  min-width: 0;
+}
+.sidebar-user-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--t1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar-user-role {
+  font-size: 10px;
+  color: var(--t4);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+.sidebar-logout {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--t4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: var(--r-sm);
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+.sidebar-logout:hover { color: #f87171; }
+
+/* ─── MAIN CONTENT ─── */
+.lobby-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ─── HEADER ─── */
+.lobby-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.lobby-greeting-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--t4);
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+}
+.lobby-greeting {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -0.03em;
+}
+.lobby-greeting .name {
+  color: var(--accent);
+}
+
+/* ─── NEW MEETING CARD ─── */
+.lobby-new-meeting {
+  background: var(--s2);
+  border: 1px solid var(--s5);
+  border-radius: var(--r-xl);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+/* Subtle accent stripe on left */
+.lobby-new-meeting::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  border-radius: 2px 0 0 2px;
+}
+.new-meeting-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.new-meeting-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--accent-pale);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--r-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.new-meeting-icon .material-symbols-outlined {
+  font-size: 22px;
+  color: var(--accent);
+}
+.new-meeting-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--t1);
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+.new-meeting-sub {
+  font-size: 0.78rem;
+  color: var(--t3);
+}
+
+/* ─── JOIN FORM ─── */
+.lobby-join {
+  display: flex;
+}
+.join-form {
+  display: flex;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 520px;
+  align-items: flex-end;
+}
+.join-input-wrap {
+  flex: 1;
+  position: relative;
+}
+.join-input-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: var(--t4);
+  pointer-events: none;
+}
+.join-input {
+  padding-left: 2.5rem;
+}
+
+/* ─── SECTION ─── */
+.lobby-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+.lobby-section-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t4);
+}
+.lobby-section-title .material-symbols-outlined {
+  font-size: 15px;
+  color: var(--t4);
+}
+
+/* ─── MEETINGS LIST ─── */
+.meetings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1px solid var(--s5);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+.meeting-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: var(--s2);
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  gap: 1rem;
+}
+.meeting-card + .meeting-card {
+  border-top: 1px solid var(--s5);
+}
+.meeting-card:hover { background: var(--s3); }
+.meeting-card-left {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex: 1;
+  min-width: 0;
+}
+.meeting-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-md);
+  background: var(--s4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.meeting-card-icon .material-symbols-outlined {
+  font-size: 18px;
+  color: var(--t2);
+}
+.meeting-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--t1);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.meeting-time {
+  font-size: 0.75rem;
+  color: var(--t3);
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.meeting-card-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+.meeting-arrow {
+  font-size: 16px;
+  color: var(--t4);
+}
+
+/* ─── QUICK GRID ─── */
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 1px;
+  background: var(--s5);
+  border: 1px solid var(--s5);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+.quick-card {
+  background: var(--s2);
+  border: none;
+  border-radius: 0;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-align: left;
+}
+.quick-card:hover { background: var(--s3); }
+.quick-card-icon {
+  font-size: 22px;
+  color: var(--t3);
+}
+.quick-card-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--t2);
+}
+
+/* ─── EXPANDED MEETINGS VIEW ─── */
+.expanded-meetings .meeting-card {
+  padding: 1.25rem 1.5rem;
+}
+.expanded-meetings .meeting-title {
+  font-size: 1rem;
+}
+.expanded-meetings .meeting-time {
+  font-size: 0.8rem;
+}
+
+/* ─── CONTACTS VIEW ─── */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--s2);
+  border: 1px solid var(--s5);
+  border-radius: var(--r-md);
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 300px;
+}
+.search-bar .search-icon {
+  font-size: 18px;
+  color: var(--t4);
+}
+.search-bar .input-field {
+  padding: 0;
+  border: none;
+  background: transparent;
+  height: auto;
+  font-size: 0.85rem;
+}
+.search-bar .input-field:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.contact-card {
+  background: var(--s2);
+  border: 1px solid var(--s5);
+  border-radius: var(--r-lg);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: border-color 0.15s, background 0.15s;
+}
+.contact-card:hover {
+  background: var(--s3);
+  border-color: var(--s6);
+}
+
+.contact-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent-pale);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--t1);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-status {
+  font-size: 0.75rem;
+  color: var(--t4);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--t5);
+}
+
+.contact-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-md);
+  background: var(--s4);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--t3);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-icon:hover {
+  background: var(--accent-pale);
+  color: var(--accent);
+}
+.btn-icon .material-symbols-outlined {
+  font-size: 16px;
+}
+
+.loading-text {
+  color: var(--t4);
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+}
+
+/* ─── SETTINGS VIEW ─── */
+.settings-section {
+  max-width: 600px;
+}
+
+.settings-panel {
+  background: var(--s2);
+  border: 1px solid var(--s5);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--s5);
+}
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--t2);
+}
+
+.setting-value {
+  font-size: 0.85rem;
+  color: var(--t3);
+  font-family: var(--font-mono);
+}
+.setting-value.secure-value {
+  color: var(--accent);
+  background: var(--accent-pale);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+.toggle {
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--s5);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--t2);
+  transition: transform 0.2s;
+}
+.toggle.active {
+  background: var(--accent);
+}
+.toggle.active::after {
+  transform: translateX(16px);
+  background: #fff;
+}

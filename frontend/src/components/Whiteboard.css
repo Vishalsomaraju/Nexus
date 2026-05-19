@@ -1,0 +1,134 @@
+/* Whiteboard.css — Obsidian Monochrome */
+
+.whiteboard-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--s0);
+}
+
+/* ─── Toolbar ─── */
+.wb-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--s5);
+  background: var(--s1);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.wb-tool-group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--s3);
+  border: 1px solid var(--s5);
+  border-radius: var(--r-md);
+  padding: 3px;
+}
+
+.wb-tool-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--t3);
+  transition: all 0.15s;
+}
+.wb-tool-btn:hover { background: var(--s4); color: var(--t1); }
+.wb-tool-btn.active {
+  background: var(--accent-pale);
+  color: var(--accent);
+}
+.wb-tool-btn .material-symbols-outlined { font-size: 16px; }
+
+/* Color swatches */
+.wb-colors {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--s3);
+  border: 1px solid var(--s5);
+  border-radius: var(--r-md);
+  padding: 5px 6px;
+}
+.wb-color-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s, border-color 0.12s;
+  flex-shrink: 0;
+}
+.wb-color-swatch:hover { transform: scale(1.2); }
+.wb-color-swatch.active { border-color: var(--t1); transform: scale(1.15); }
+
+/* Size control */
+.wb-size-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--s3);
+  border: 1px solid var(--s5);
+  border-radius: var(--r-md);
+  padding: 5px 8px;
+}
+.wb-size-label {
+  font-size: 10px;
+  color: var(--t4);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+.wb-size-slider {
+  width: 64px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* Spacer */
+.wb-spacer { flex: 1; }
+
+/* Clear button */
+.wb-clear-btn {
+  background: none;
+  border: 1px solid var(--s5);
+  border-radius: var(--r-md);
+  color: var(--t4);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s;
+  font-family: var(--font-body);
+}
+.wb-clear-btn:hover { color: #f87171; border-color: rgba(239,68,68,0.35); }
+.wb-clear-btn .material-symbols-outlined { font-size: 14px; }
+
+/* ─── Canvas ─── */
+.wb-canvas-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.wb-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+/* Cursor override */
+.wb-canvas.tool-pen     { cursor: crosshair; }
+.wb-canvas.tool-eraser  { cursor: cell; }

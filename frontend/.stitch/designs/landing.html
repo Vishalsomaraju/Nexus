@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - Communicate at the Speed of Thought</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #031427;
+            color: #d3e4ff;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(3, 20, 39, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .cyan-glow {
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+        }
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, rgba(0, 229, 255, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(179, 0, 254, 0.15) 0px, transparent 50%);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #00e5ff, #e8b3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b494c;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #00daf3;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#00e5ff",
+                      "tertiary": "#e7ecfd",
+                      "background": "#031427",
+                      "primary-fixed": "#9cf0ff",
+                      "surface-container-high": "#1b2b3f",
+                      "primary": "#c3f5ff",
+                      "surface-bright": "#2a3a4f",
+                      "secondary-container": "#b300fe",
+                      "on-surface-variant": "#bac9cc",
+                      "secondary-fixed-dim": "#e8b3ff",
+                      "surface-variant": "#26364b",
+                      "surface-dim": "#031427",
+                      "inverse-primary": "#006875",
+                      "secondary": "#e8b3ff",
+                      "on-surface": "#d3e4ff",
+                      "outline-variant": "#3b494c",
+                      "on-background": "#d3e4ff",
+                      "inverse-on-surface": "#213146",
+                      "on-primary-container": "#00626e",
+                      "on-secondary-container": "#fff6fd",
+                      "on-tertiary-container": "#535966",
+                      "secondary-fixed": "#f6d9ff",
+                      "error-container": "#93000a",
+                      "surface-container-highest": "#26364b",
+                      "on-tertiary": "#2b303d",
+                      "tertiary-fixed": "#dde2f3",
+                      "error": "#ffb4ab",
+                      "primary-fixed-dim": "#00daf3",
+                      "surface": "#031427",
+                      "surface-container": "#102034",
+                      "tertiary-fixed-dim": "#c1c6d6",
+                      "on-error": "#690005",
+                      "on-tertiary-fixed": "#161c27",
+                      "on-primary-fixed-variant": "#004f58",
+                      "on-primary": "#00363d",
+                      "on-error-container": "#ffdad6",
+                      "on-primary-fixed": "#001f24",
+                      "on-tertiary-fixed-variant": "#414754",
+                      "on-secondary": "#500074",
+                      "surface-container-lowest": "#000f22",
+                      "inverse-surface": "#d3e4ff",
+                      "tertiary-container": "#cbd0e0",
+                      "surface-container-low": "#0b1c30",
+                      "on-secondary-fixed": "#310049",
+                      "surface-tint": "#00daf3",
+                      "on-secondary-fixed-variant": "#7200a3",
+                      "outline": "#849396"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "md": "24px",
+                      "sm": "12px",
+                      "xl": "80px",
+                      "margin-mobile": "20px",
+                      "base": "8px",
+                      "xs": "4px",
+                      "lg": "48px",
+                      "gutter": "24px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Outfit"],
+                      "body-sm": ["Inter"],
+                      "headline-md": ["Outfit"],
+                      "headline-lg-mobile": ["Outfit"],
+                      "display-lg": ["Outfit"],
+                      "label-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-sm": ["Outfit"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="custom-scrollbar">
+<!-- Top AppBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-[20px] border-b border-white/10 shadow-[0_0_15px_rgba(0,229,255,0.1)]">
+<div class="flex justify-between items-center px-margin-mobile h-[80px] max-w-[1440px] mx-auto">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">hub</span>
+<span class="font-headline-md text-headline-md text-on-surface uppercase tracking-wider">NEXUS</span>
+</div>
+<button class="bg-primary-container text-on-primary-container px-md py-xs rounded-full font-label-md text-label-md hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all duration-300 active:scale-95">
+                Launch
+            </button>
+</div>
+</nav>
+<main class="pt-[80px] mesh-gradient min-h-screen relative overflow-hidden">
+<!-- Visual Anchor Background -->
+<div class="absolute top-0 right-0 w-full h-full opacity-20 pointer-events-none -z-10">
+<img alt="Background Anchor" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uioqxWPR6I8B44WHkPyegHO-0Art6ezXr9pL4i1c68_nZRNWCUV4r8_nw3qUCrQXfT9cGCLaHYeIPf9TsZWFBaSc8sUhSs_DxBVZTVxhWhKdOucaKIHyPUiGmarK00vaJ0c3DckWycafbQx7OKfMp-4oTVssE3FvEAR5uSeYEKW6PF5uNwCLnq3mCA7b9Oc8XRaVB4IaqfC3Jemc9SZitjbAcK81lpt3BQgvB6ET5gn9fMqXd_sDJX47z0"/>
+</div>
+<!-- Hero Section -->
+<section class="px-margin-mobile py-xl flex flex-col items-center text-center">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-gradient mb-md max-w-lg">
+                Communicate at the Speed of Thought
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg max-w-sm">
+                Next-generation encrypted communication protocols for the elite digital workspace.
+            </p>
+<button class="bg-gradient-to-r from-primary-container to-secondary-container text-on-background px-lg py-md rounded-full font-headline-sm text-headline-sm cyan-glow hover:scale-105 transition-all duration-300 mb-xl active:scale-95">
+                Start Secure Meeting
+            </button>
+<!-- Video Call Mockup Card -->
+<div class="w-full max-w-md aspect-[4/3] glass-panel rounded-xl overflow-hidden shadow-2xl relative border-primary-container/20">
+<div class="absolute top-0 left-0 w-full p-md flex justify-between items-center z-10">
+<div class="flex items-center gap-sm">
+<div class="w-base h-base bg-red-500 rounded-full animate-pulse"></div>
+<span class="font-label-md text-label-md text-on-surface">SECURE CHANNEL // 0X-224</span>
+</div>
+<span class="material-symbols-outlined text-on-surface">more_vert</span>
+</div>
+<div class="w-full h-full relative group">
+<img class="w-full h-full object-cover grayscale-[30%] contrast-125 group-hover:grayscale-0 transition-all duration-700" data-alt="A sophisticated professional person on a video call in a dimly lit, futuristic office environment. The lighting is dominated by cyan and purple neon reflections on glass surfaces. The person is looking directly at the camera with a focused and intelligent expression. High-fidelity textures and professional cinematic lighting create a premium cyberpunk-lite aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA0Y2qPccFROj5uwGDiI17atOC4aQk4NuZ_6ltpdLriLi3KSQIYO7etDsbn1FZx1piYIIEv93-BkBCYS7Cb8HDBSSb1RcHxADfVWjD5FsP0hPXhX9qJ8dX8pQllohPoPk51tD4wDEK1Q-0u3fYUIcAd4FPpR9nfd7FcHY3XpYUTSqSTnQ80eSXEo94n-5Ek9WQmQUZELUy5rvDDue0_wNUvCK1rakBU500cJbdgRj3WbtlGzoNhcpHtqa3WuwT3D491Vkugszfy-M"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim to-transparent opacity-60"></div>
+<!-- Call Controls -->
+<div class="absolute bottom-md left-1/2 -translate-x-1/2 flex items-center gap-md">
+<div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-primary-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined">mic</span>
+</div>
+<div class="w-14 h-14 rounded-full bg-red-600/80 flex items-center justify-center text-white cursor-pointer hover:bg-red-500 transition-all active:scale-90">
+<span class="material-symbols-outlined">call_end</span>
+</div>
+<div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-primary-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined">videocam</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="px-margin-mobile py-xl bg-surface-container-low/50">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-lg text-center">Core Protocol Assets</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- HD Video -->
+<div class="glass-panel p-md rounded-xl hover:shadow-[0_0_15px_rgba(0,229,255,0.2)] transition-all">
+<span class="material-symbols-outlined text-primary-container text-[32px] mb-sm" style="font-variation-settings: 'FILL' 0;">hd</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">HD Video Calling</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Uncompressed 4K streaming with zero-latency synchronization across global nodes.</p>
+</div>
+<!-- Encryption -->
+<div class="glass-panel p-md rounded-xl hover:shadow-[0_0_15px_rgba(179,0,254,0.2)] transition-all">
+<span class="material-symbols-outlined text-secondary text-[32px] mb-sm" style="font-variation-settings: 'FILL' 0;">enhanced_encryption</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">End-to-End Encryption</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Quantum-resistant security layers protecting every packet of your communication.</p>
+</div>
+<!-- Whiteboard -->
+<div class="glass-panel p-md rounded-xl hover:shadow-[0_0_15px_rgba(0,229,255,0.2)] transition-all">
+<span class="material-symbols-outlined text-primary-container text-[32px] mb-sm" style="font-variation-settings: 'FILL' 0;">draw</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Real-Time Whiteboard</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Collaborative canvas for architectural planning and technical brainstorming.</p>
+</div>
+<!-- File Sharing -->
+<div class="glass-panel p-md rounded-xl hover:shadow-[0_0_15px_rgba(179,0,254,0.2)] transition-all">
+<span class="material-symbols-outlined text-secondary text-[32px] mb-sm" style="font-variation-settings: 'FILL' 0;">cloud_sync</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">File Sharing</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">High-speed terminal for secure asset deployment and peer-to-peer data transfer.</p>
+</div>
+</div>
+</section>
+<!-- Interactive Demo Area -->
+<section class="px-margin-mobile py-xl">
+<div class="glass-panel rounded-xl overflow-hidden border-white/5 flex flex-col h-[500px]">
+<!-- Panel Header -->
+<div class="h-12 border-b border-white/5 flex items-center px-md justify-between bg-surface-container-highest/30">
+<span class="font-label-md text-label-md text-primary-container tracking-[0.2em]">CANVAS_PROTO_04</span>
+<div class="flex gap-xs">
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+</div>
+</div>
+<div class="flex-1 flex">
+<!-- Main Whiteboard Area -->
+<div class="flex-1 relative bg-surface-container-lowest overflow-hidden" id="whiteboard">
+<!-- Simulated Grid Lines -->
+<div class="absolute inset-0 opacity-10" style="background-size: 40px 40px; background-image: radial-gradient(circle, #00e5ff 1px, transparent 1px);"></div>
+<canvas class="absolute inset-0 cursor-crosshair" id="demo-canvas"></canvas>
+<!-- Floating Tooltip -->
+<div class="absolute top-md left-md glass-panel px-sm py-xs rounded-lg pointer-events-none">
+<p class="font-label-md text-label-md text-on-surface">COORDINATE: <span class="text-primary-container" id="coords">0,0</span></p>
+</div>
+</div>
+<!-- Sidebar -->
+<div class="w-24 border-l border-white/5 bg-surface-container-low/80 flex flex-col items-center py-md gap-lg">
+<span class="font-label-md text-label-md vertical-lr text-on-surface-variant -rotate-180">PARTICIPANTS</span>
+<div class="flex flex-col gap-sm">
+<div class="w-10 h-10 rounded-full border-2 border-primary-container p-[2px]">
+<img class="w-full h-full object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk05QfHFuNUCDFrXJr_QvjoLbqTffhnkil9iXFahDOEtvaMVjlRFBqjg21_dVRamgy6wsGBvx1i17bWyeDNZvLrTwFHoXtPJBx4zfexz6Dev8jAlo7mdkJlHmlVkSoPuPPkwWHvtnaG5G8ryQUQJpt62D0huvteIIM39FGZR_-vB2PXUUo_R139OtuCJc_lOJkuWd8r67shwKf6t2Jjq_4BGcOzJfYLZtveuDeZJm-nBOb_EelGMU6f5bMERIm1ItHDEnsKghLjQ8"/>
+</div>
+<div class="w-10 h-10 rounded-full border border-white/10 p-[2px]">
+<img class="w-full h-full object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwniQHeh8U8swVmYaI2BRcEuiZhvvl76qG75SPSJbzBMRs0YTmkkRgPQeYUvhuqCDYNEC1gHx_qVAGk4yOYhIJg0YePd-jvmCXQWDjaDH6PVSRuqmXABNHL6Ns8xAwu5M8WKKI68T2Bk99TVSjSnPT4Y70uf959sXBQOLS4k418MEBh7UkSjUqKuLo6xzPyaZUg2gywAEpqs19uJgNxP2La6qwf_3Sc_4ScVfbjwKK4238GfNalZhDZqi9hibrIUylYtc5iPVIbXo"/>
+</div>
+<div class="w-10 h-10 rounded-full border border-white/10 p-[2px] flex items-center justify-center bg-surface-container">
+<span class="font-label-md text-label-md text-on-surface-variant">+2</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class="text-center mt-md font-body-sm text-body-sm text-on-surface-variant">Live demonstration of collaborative neural-pathway mapping.</p>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest py-lg px-margin-mobile border-t border-white/5">
+<div class="max-w-[1440px] mx-auto flex flex-col items-center gap-base">
+<div class="flex items-center gap-xs mb-sm opacity-50">
+<span class="material-symbols-outlined text-primary-container scale-75">hub</span>
+<span class="font-headline-sm text-headline-sm text-on-surface tracking-widest">NEXUS</span>
+</div>
+<div class="flex flex-wrap justify-center gap-md mb-lg">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container hover:translate-y-[-2px] transition-all duration-300" href="#">Network</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container hover:translate-y-[-2px] transition-all duration-300" href="#">Terminal</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container hover:translate-y-[-2px] transition-all duration-300" href="#">Intelligence</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container hover:translate-y-[-2px] transition-all duration-300" href="#">Security</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant/50">© 2024 NEXUS SYSTEMS. PROTOCOL SECURED.</p>
+</div>
+</footer>
+<script>
+        // Interactive Whiteboard Micro-interaction
+        const canvas = document.getElementById('demo-canvas');
+        const ctx = canvas.getContext('2d');
+        const coordsText = document.getElementById('coords');
+        const whiteboard = document.getElementById('whiteboard');
+
+        function resizeCanvas() {
+            canvas.width = whiteboard.clientWidth;
+            canvas.height = whiteboard.clientHeight;
+            drawInitialLines();
+        }
+
+        function drawInitialLines() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#00e5ff';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 10]);
+            
+            // Random technical-looking lines
+            ctx.beginPath();
+            ctx.moveTo(50, 50);
+            ctx.lineTo(canvas.width - 100, 150);
+            ctx.lineTo(canvas.width / 2, canvas.height - 50);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height / 2, 80, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        whiteboard.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = Math.round(e.clientX - rect.left);
+            const y = Math.round(e.clientY - rect.top);
+            coordsText.textContent = `${x}, ${y}`;
+            
+            // Draw hover effect
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawInitialLines();
+            
+            ctx.setLineDash([]);
+            ctx.strokeStyle = 'rgba(232, 179, 255, 0.4)';
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvas.height);
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvas.width, y);
+            ctx.stroke();
+        });
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Smooth reveal animation for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(card);
+        });
+    </script>
+</body></html>

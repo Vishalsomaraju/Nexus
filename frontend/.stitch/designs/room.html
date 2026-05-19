@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexus Secure - Session Alpha</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(0, 218, 243, 0.3), inset 0 0 10px rgba(0, 218, 243, 0.2);
+        }
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, rgba(179, 0, 254, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(0, 218, 243, 0.1) 0px, transparent 50%);
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #3b494c; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00daf3; }
+        
+        @keyframes pulse-cyan {
+            0% { box-shadow: 0 0 15px rgba(0, 218, 243, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(0, 218, 243, 0.5); }
+            100% { box-shadow: 0 0 15px rgba(0, 218, 243, 0.3); }
+        }
+        .animate-encryption { animation: pulse-cyan 3s infinite ease-in-out; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary": "#00363d",
+                      "inverse-on-surface": "#213146",
+                      "surface-dim": "#031427",
+                      "surface-variant": "#26364b",
+                      "primary-fixed-dim": "#00daf3",
+                      "inverse-surface": "#d3e4ff",
+                      "surface": "#031427",
+                      "on-secondary": "#500074",
+                      "inverse-primary": "#006875",
+                      "outline": "#849396",
+                      "tertiary-fixed-dim": "#c1c6d6",
+                      "surface-container-high": "#1b2b3f",
+                      "on-secondary-container": "#fff6fd",
+                      "on-tertiary": "#2b303d",
+                      "surface-tint": "#00daf3",
+                      "secondary-fixed-dim": "#e8b3ff",
+                      "secondary": "#e8b3ff",
+                      "on-tertiary-fixed": "#161c27",
+                      "on-secondary-fixed": "#310049",
+                      "surface-bright": "#2a3a4f",
+                      "on-error-container": "#ffdad6",
+                      "on-error": "#690005",
+                      "on-background": "#d3e4ff",
+                      "primary": "#c3f5ff",
+                      "on-secondary-fixed-variant": "#7200a3",
+                      "primary-container": "#00e5ff",
+                      "background": "#031427",
+                      "tertiary-fixed": "#dde2f3",
+                      "surface-container": "#102034",
+                      "on-primary-fixed": "#001f24",
+                      "error": "#ffb4ab",
+                      "on-primary-fixed-variant": "#004f58",
+                      "on-tertiary-container": "#535966",
+                      "secondary-container": "#b300fe",
+                      "on-tertiary-fixed-variant": "#414754",
+                      "surface-container-lowest": "#000f22",
+                      "tertiary-container": "#cbd0e0",
+                      "surface-container-low": "#0b1c30",
+                      "on-surface": "#d3e4ff",
+                      "secondary-fixed": "#f6d9ff",
+                      "primary-fixed": "#9cf0ff",
+                      "outline-variant": "#3b494c",
+                      "on-surface-variant": "#bac9cc",
+                      "error-container": "#93000a",
+                      "tertiary": "#e7ecfd",
+                      "surface-container-highest": "#26364b",
+                      "on-primary-container": "#00626e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "gutter": "24px",
+                      "margin-desktop": "64px",
+                      "base": "8px",
+                      "xl": "80px",
+                      "lg": "48px",
+                      "margin-mobile": "20px",
+                      "sm": "12px",
+                      "md": "24px"
+              },
+              "fontFamily": {
+                      "label-md": ["Inter"],
+                      "headline-md": ["Outfit"],
+                      "headline-lg": ["Outfit"],
+                      "headline-lg-mobile": ["Outfit"],
+                      "body-lg": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-sm": ["Outfit"],
+                      "display-lg": ["Outfit"]
+              },
+              "fontSize": {
+                      "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                      "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-container/30 overflow-hidden h-screen w-screen mesh-gradient">
+<!-- TopAppBar Mapping -->
+<header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-gutter bg-surface/70 backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(0,218,243,0.1)]">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">security</span>
+<h1 class="font-headline-sm text-headline-sm font-bold tracking-tighter text-primary-fixed-dim drop-shadow-[0_0_8px_rgba(0,218,243,0.3)]">NEXUS SECURE</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex gap-md">
+<span class="text-primary-fixed-dim font-label-md text-label-md transition-colors hover:text-primary-container cursor-pointer">SESSION ALPHA</span>
+<span class="text-on-surface-variant font-label-md text-label-md transition-colors hover:text-primary-container cursor-pointer">ENCRYPTION: AES-256</span>
+</div>
+<button class="hover:scale-105 active:scale-95 transition-transform text-primary-fixed-dim">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Sidebar Participant Mapping (NavigationDrawer Hybrid) -->
+<aside class="fixed left-0 top-16 bottom-0 w-20 bg-surface-dim/80 backdrop-blur-2xl border-r border-white/5 z-40 flex flex-col items-center py-base gap-base">
+<div class="flex flex-col gap-sm overflow-y-auto px-xs scrollbar-hide">
+<!-- Active Speaker -->
+<div class="relative group cursor-pointer transition-all duration-300">
+<div class="w-14 h-14 rounded-xl border-2 border-primary-fixed-dim overflow-hidden glass-panel neon-border">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a professional male technologist in a dimly lit studio. The lighting is dominated by a cool cyan and deep purple rim light that highlights his facial features against the dark, high-tech background. He has a focused expression, representing the high-end, cyberpunk-lite aesthetic of a secure digital environment. The overall mood is sophisticated and futuristic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiNhZDMFY0FgF2Fg7M8OQNXpgUc7GmfTsfXypmZ76GBVCyVCO61bKNtGtR3t6rZFHT4F4XUAteFgDZa-RrWfNypaTturkjAPRHz-lOnsUKoKWGSYd6aqHdVsE9HQ4kZPp82EyxvpKSDkn8Rq6Ic-CqLxVIq_7v_0Nai2Az2tDap1amkRf_qSGmoRom0lshljrfBNMykOz1HxUkvMWSg6ZggvEFKrpJuMuHGN0_snNSYPjYACJP7VJhAewy2_1d0pkUFzMpQnTw1zU"/>
+</div>
+<span class="absolute bottom-1 right-1 material-symbols-outlined text-[14px] text-primary-fixed-dim bg-surface/80 rounded-full p-0.5">mic</span>
+</div>
+<!-- Other Participants -->
+<div class="relative group cursor-pointer hover:scale-105 transition-all">
+<div class="w-14 h-14 rounded-xl border border-white/10 overflow-hidden glass-panel opacity-80 group-hover:opacity-100">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="A portrait of a female creative professional in a high-fidelity digital setting. Her silhouette is sharp against a background of soft bokeh from neon purple and cyan lights. She is looking directly at the camera with a calm, confident gaze. The image carries a premium enterprise feel with a distinct cyberpunk digital future aesthetic, emphasizing technical depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXfatoIr7-1cxzmSTCRfKDnn_2Vel0-XMXTfnXmjhm1QUr1STl_cpxX7-rvQc4GZtfrZzK3b36nO3b8XxaF36iY1BqPKgkfRwDDCg8nopscOQd07_TyT1790hmwR_4vn4qdObm0V6uoE2CfHmuyQYWlLNmpEZUzIfmkluZf5ouKGY6Fa1iPabso9KKLOzz8cfWhChA2tlpAZZHCNhjTaN2UUe81IAHJ6xd5K14nVfys9DRcMzu0VF9E-kdBWLihYfV3I-7JaWzVBI"/>
+</div>
+<span class="absolute bottom-1 right-1 material-symbols-outlined text-[14px] text-error bg-surface/80 rounded-full p-0.5">mic_off</span>
+</div>
+<div class="relative group cursor-pointer hover:scale-105 transition-all">
+<div class="w-14 h-14 rounded-xl border border-white/10 overflow-hidden glass-panel opacity-80 group-hover:opacity-100">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="A modern professional male developer with short dark hair, set within a glassmorphic frame. The lighting reflects a bioluminescent glow of cyan and violet, creating a sharp contrast with the deep obsidian environment. The style is minimalist yet technologically advanced, echoing a high-end hardware console interaction. The facial expression is one of engaged participation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg40xlj3w1ICzL8ZC_KD_uBtOuniYTYK2fqSQZa52snroqliCQLs9JR4dG9Tijlv-Lgf76tktxImj13rHackyfOAg809fC8ESJLqx7cG7c_Lkk275RWoWByH6IrXYy2qF-66afUVrc46Irl8xdAis8QMhbJJLefUMY_KUQmYl5lbWtDqb8E5LHe_TWrtxwU-szU9IFiKfOPNeyUSsDKyR5BwMp-GkVF0zC62No0OsHcRKb8o4Dk8JGBycW-55gUk_nl6FUb3WgD5s"/>
+</div>
+<span class="absolute bottom-1 right-1 material-symbols-outlined text-[14px] text-on-surface-variant bg-surface/80 rounded-full p-0.5">videocam_off</span>
+</div>
+<button class="w-14 h-14 rounded-xl border border-dashed border-outline-variant flex items-center justify-center text-outline hover:border-primary-fixed-dim hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="fixed top-16 left-20 right-0 bottom-0 p-gutter md:p-lg flex flex-col md:flex-row gap-gutter">
+<!-- Large Central Video Feed -->
+<div class="flex-1 relative flex flex-col h-full min-h-0">
+<div class="flex-1 rounded-3xl overflow-hidden bg-surface-container-lowest border border-white/10 relative animate-encryption neon-border">
+<img class="w-full h-full object-cover opacity-80" data-alt="A wide-angle view of a high-tech control center or digital sanctuary. Floating holographic data panels in vibrant cyan and purple orbit around a central glowing hub. The environment is a deep obsidian void with smooth mesh-gradient transitions between light and shadow. The visual language is refined restraint, mimicking a state-of-the-art precision interface for high-end professional use." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgYNe2lZ3_i3VfN2ehHZkNWIaPi4E-PLO5m78C_-Jrt6Q0QrRf3FRWMjVabRutIVRF79bcR_06vCEqnDV_akES9tnXsj7FU7JrZ6dE862iqFJ_L4Mll2FpXfN4kV2l42e5mZ4g6bzdigEZUAYVzZVWdPm-8SE3OYJ83wfGcBGS_bSK38ynqxEcMtAJWC-25FCzxWhbOsRDmeZPyEwN5wkZoKN1Ja0PPZE-xYIlysEUq_943zh0ZZCRrmTjMyaszJ97xo9YQBJU2Kg"/>
+<!-- Status Overlays -->
+<div class="absolute top-md left-md flex gap-sm">
+<div class="glass-panel px-sm py-xs rounded-full flex items-center gap-xs bg-surface/60">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-pulse"></span>
+<span class="font-label-md text-label-md text-primary-fixed-dim">LIVE: ENCRYPTED CHANNEL</span>
+</div>
+</div>
+<div class="absolute bottom-md left-md">
+<div class="glass-panel px-md py-sm rounded-xl bg-surface/60 border border-white/10">
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold">Marcus Chen (Presenter)</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Global CTO • Nexus Systems</p>
+</div>
+</div>
+<!-- Encryption Detail Badge -->
+<div class="absolute top-md right-md">
+<div class="glass-panel p-sm rounded-xl bg-surface/60 flex flex-col items-end">
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-[10px] text-primary-fixed-dim tracking-widest mt-1">SECURE_NODE_04</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Chat Panel (Collapsible) -->
+<aside class="hidden md:flex flex-col w-80 h-full glass-panel bg-surface-dim/50 rounded-3xl border border-white/5 overflow-hidden transition-all duration-500" id="chat-panel">
+<div class="p-md border-b border-white/5 flex justify-between items-center bg-white/5">
+<h3 class="font-headline-sm text-headline-sm text-primary-fixed-dim text-lg">Encrypted Chat</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-white">close</span>
+</div>
+<div class="flex-1 overflow-y-auto p-md flex flex-col gap-md">
+<!-- Chat Message Out -->
+<div class="flex flex-col items-end gap-xs">
+<div class="bg-secondary-container/20 text-on-surface p-sm rounded-2xl rounded-tr-none border border-secondary-container/30 max-w-[90%]">
+<p class="text-body-sm font-body-sm">Have we finalized the node protocols for session Alpha?</p>
+</div>
+<span class="text-[10px] text-outline">14:22 • Delivered</span>
+</div>
+<!-- Chat Message In -->
+<div class="flex flex-col items-start gap-xs">
+<div class="flex items-center gap-sm mb-xs">
+<img class="w-6 h-6 rounded-full border border-primary-fixed-dim" data-alt="Small thumbnail profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZkTpj5-ihfy_StPphQBfrgSpLDASGLEbhVrnuyq_glEqBEiTzbSm3m4xtDCNZO5mc4C1REDV2lOdyHESIOXQGOVhiLA1HpydcgT5DFx9bs9YbSjKvl8pW3XZe-6Uq6nO-WQbz7bSl-R0PpUzclCc_jEbvOO_tQD0Mj-6A8Zwd-Fk6jYiSynCR1aeNNG_queRFNTXmWgDjpOkKDzfQwkP3I6KsrIz_SUto7DNGBFWUSSdROq7frUFHVttYgswm1-sVJNSG4ZNCZms"/>
+<span class="font-label-md text-label-md text-primary-fixed-dim">Sarah J.</span>
+</div>
+<div class="bg-white/5 text-on-surface p-sm rounded-2xl rounded-tl-none border border-white/10 max-w-[90%]">
+<p class="text-body-sm font-body-sm">Protocol 7 is active. Verification pending on the edge nodes.</p>
+</div>
+<span class="text-[10px] text-outline">14:24</span>
+</div>
+<div class="border-t border-white/5 my-xs opacity-20"></div>
+<div class="flex flex-col items-start gap-xs">
+<div class="flex items-center gap-sm mb-xs">
+<img class="w-6 h-6 rounded-full border border-white/20" data-alt="Small thumbnail profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCtf678SDbTTJX3XoivQ3ASPPAuT0w0yfwGjHRs8Rtdac0xBKRH7cwTTJepUISGcDH1csZ7XH30k_sDnE5lKZXyD7M3ycTvLMFAsWyouh_HWs8Z9pb6X4VUgtgKunCM6ibzsg-VmkAyqwCpdLMUSoFnwOg42zhnvPOvofOPGMuXRXSnt_MuTvLV6y3VFqrcryEh5DMKuXIfM_AlMkK-HoGmsmQKKXtUFsCa3D_92hL-ChgWpIeWwDW98Kj66FKAET5GOHkz7W3pes"/>
+<span class="font-label-md text-label-md text-on-surface-variant">David K.</span>
+</div>
+<div class="bg-white/5 text-on-surface p-sm rounded-2xl rounded-tl-none border border-white/10 max-w-[90%]">
+<p class="text-body-sm font-body-sm">I'm sharing the whiteboard for the architecture review now.</p>
+</div>
+<span class="text-[10px] text-outline">14:25</span>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-md border-t border-white/5">
+<div class="relative group">
+<input class="w-full bg-surface-container/50 border-0 border-b border-outline-variant focus:ring-0 focus:border-primary-fixed-dim text-on-surface placeholder:text-outline transition-all p-sm rounded-t-lg font-body-sm" placeholder="Type encrypted message..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 text-primary-fixed-dim hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</aside>
+</main>
+<!-- BottomNavBar Mapping (Floating Controls) -->
+<nav class="fixed bottom-base left-1/2 -translate-x-1/2 z-50 flex gap-sm px-md py-sm items-center bg-surface-container/60 backdrop-blur-md rounded-full border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+<button class="p-3 rounded-full text-on-surface-variant hover:text-primary-fixed-dim hover:bg-white/5 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="p-3 rounded-full text-on-surface-variant hover:text-primary-fixed-dim hover:bg-white/5 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="bg-secondary-container text-on-secondary-container rounded-full p-3 shadow-[0_0_10px_rgba(179,0,254,0.4)] active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">screen_share</span>
+</button>
+<button class="p-3 rounded-full text-on-surface-variant hover:text-primary-fixed-dim hover:bg-white/5 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">draw</span>
+</button>
+<div class="h-6 w-[1px] bg-white/10 mx-xs"></div>
+<button class="p-3 rounded-full bg-error/10 text-error hover:bg-error hover:text-on-error active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call_end</span>
+</button>
+</nav>
+<!-- Floating Chat Toggle for Mobile -->
+<button class="md:hidden fixed bottom-base right-base z-50 w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-lg active:scale-90 transition-transform" id="mobile-chat-trigger">
+<span class="material-symbols-outlined">chat</span>
+</button>
+<script>
+        // Micro-interactions and chat toggle
+        const mobileChatTrigger = document.getElementById('mobile-chat-trigger');
+        const chatPanel = document.getElementById('chat-panel');
+        let chatOpen = false;
+
+        mobileChatTrigger?.addEventListener('click', () => {
+            if (!chatOpen) {
+                chatPanel.classList.remove('hidden');
+                chatPanel.classList.add('fixed', 'inset-0', 'z-[60]', 'w-full', 'rounded-none');
+                mobileChatTrigger.innerHTML = '<span class="material-symbols-outlined">close</span>';
+            } else {
+                chatPanel.classList.add('hidden');
+                chatPanel.classList.remove('fixed', 'inset-0', 'z-[60]', 'w-full', 'rounded-none');
+                mobileChatTrigger.innerHTML = '<span class="material-symbols-outlined">chat</span>';
+            }
+            chatOpen = !chatOpen;
+        });
+
+        // Interactive states for buttons
+        document.querySelectorAll('nav button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (!this.classList.contains('bg-error/10')) {
+                    this.classList.toggle('text-primary-fixed-dim');
+                    this.classList.toggle('bg-white/10');
+                    const icon = this.querySelector('.material-symbols-outlined');
+                    if (icon.innerText.includes('_off')) {
+                        icon.innerText = icon.innerText.replace('_off', '');
+                    } else {
+                        // Very basic toggle logic
+                        if (['mic', 'videocam'].includes(icon.innerText)) {
+                            icon.innerText += '_off';
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body></html>

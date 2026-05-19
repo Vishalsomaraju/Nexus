@@ -1,0 +1,202 @@
+/* Auth.css — Obsidian Monochrome */
+
+.auth-page {
+  min-height: 100vh;
+  background: var(--s1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Subtle radial glow behind card */
+.auth-page::before {
+  content: '';
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(79,110,247,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.auth-logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  gap: 8px;
+  border-bottom: 1px solid var(--s5);
+  cursor: pointer;
+  background: rgba(5,5,5,0.9);
+  backdrop-filter: blur(20px);
+  z-index: 10;
+}
+.auth-logo-mark {
+  width: 26px;
+  height: 26px;
+  background: var(--accent);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-logo-mark .material-symbols-outlined {
+  font-size: 14px;
+  color: #fff;
+}
+.auth-logo-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--t1);
+}
+
+/* ─── Card ─── */
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--s2);
+  border: 1px solid var(--s5);
+  border-radius: var(--r-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+}
+
+.auth-header {
+  margin-bottom: 1.75rem;
+}
+.auth-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -0.025em;
+  margin-bottom: 0.35rem;
+}
+.auth-sub {
+  font-size: 0.875rem;
+  color: var(--t3);
+  font-weight: 400;
+}
+
+/* ─── Tabs ─── */
+.auth-tabs {
+  display: flex;
+  background: var(--s3);
+  border-radius: var(--r-md);
+  padding: 3px;
+  margin-bottom: 1.75rem;
+  gap: 2px;
+}
+.auth-tab {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--t3);
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.auth-tab.active {
+  background: var(--s5);
+  color: var(--t1);
+  box-shadow: var(--shadow-sm);
+}
+.auth-tab:not(.active):hover { color: var(--t2); }
+
+/* ─── Form ─── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.auth-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--t3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.auth-error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.2);
+  color: #f87171;
+  border-radius: var(--r-md);
+  padding: 0.6rem 0.8rem;
+  font-size: 0.83rem;
+}
+
+.auth-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.25rem;
+  padding: 0.7rem;
+  font-size: 0.9rem;
+  border-radius: var(--r-md);
+}
+
+/* ─── Divider ─── */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+.auth-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--s5);
+}
+.auth-divider-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--t4);
+  letter-spacing: 0.08em;
+}
+
+/* ─── Social ─── */
+.auth-social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.auth-social-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.875rem;
+  padding: 0.65rem;
+  gap: 8px;
+}
+
+/* Spinner inside button */
+.btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
